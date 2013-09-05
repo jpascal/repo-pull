@@ -1,0 +1,36 @@
+provider: git@github.com
+repositories:
+    barclamp-nova:
+        from: crowbar:release/pebbles/master
+        to: MirantisDellCrowbar:release/pebbles/master
+    barclamp-git:
+        from: crowbar:release/pebbles/master
+        to: MirantisDellCrowbar:release/pebbles/master
+    barclamp-glance:
+        from: crowbar:release/pebbles/master
+        to: MirantisDellCrowbar:release/pebbles/master
+    barclamp-keystone:
+        from: crowbar:release/pebbles/master
+        to: MirantisDellCrowbar:release/pebbles/master
+    barclamp-cinder:
+        from: crowbar:release/pebbles/master
+        to: MirantisDellCrowbar:release/pebbles/master
+    barclamp-swift:
+        from: crowbar:release/pebbles/master
+        to: MirantisDellCrowbar:release/pebbles/master
+    barclamp-crowbar:
+        from: crowbar:release/pebbles/master
+        to: MirantisDellCrowbar:release/pebbles/master
+    barclamp-quantum:
+        from: crowbar:release/pebbles/master
+        to: MirantisDellCrowbar:release/pebbles/master
+    barclamp-nova_dashboard:
+        from: crowbar:release/pebbles/master
+        to: MirantisDellCrowbar:release/pebbles/master
+    barclamp-tempest:
+        from: crowbar:release/pebbles/master
+        to: MirantisDellCrowbar:release/pebbles/master
+    barclamp-ceilometer:
+        from: crowbar:release/pebbles/master
+        to: MirantisDellCrowbar:release/pebbles/master
+

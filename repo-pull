@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+require 'yaml'
+require 'fileutils'
+
+config = YAML.load_file("config.yml")
+
+repositories = (config["repositories"] || [])
+
+if ARGV.empty?
+	puts "Allowed repositories:\n\t#{repositories.collect{|name,_| name}.join("\n\t")}"
+else
+	repositories.select{|name,_| ARGV.include? name }.each do |name,params|
+	    from_project,from_branch = params["from"].split(":",2)
+	    to_project,to_branch = params["to"].split(":",2)
+	    from_url = File.join("#{config["provider"]}:#{from_project}","#{name}.git")
+	    to_url = File.join("#{config["provider"]}:#{to_project}","#{name}.git")
+	    puts ">>> From: #{from_url} (#{from_branch})"
+	    puts ">>> To: #{to_url} (#{to_branch})"
+	    if system("git clone #{to_url} #{name} -b #{to_branch}") and File.exist?(name)
+		FileUtils.cd(name) do
+		    unless system("git pull --rebase #{from_url} #{from_branch}")
+			system("git status")
+			system("git --no-pager diff")
+		    else
+			system("git pull origin #{to_branch}")
+			system("git push origin #{to_branch}")
+		    end
+		end
+		FileUtils.rm_rf(name)
+	    end
+	end
+end
